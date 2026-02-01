@@ -7,710 +7,91 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom animations and styles */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .theme-selector {
-            transition: all 0.3s ease;
-        }
-        
-        /* Theme styles */
-        .theme-blue {
-            --primary: #3b82f6;
-            --secondary: #1d4ed8;
-            --accent: #60a5fa;
-        }
-        
-        .theme-purple {
-            --primary: #8b5cf6;
-            --secondary: #7e22ce;
-            --accent: #a78bfa;
-        }
-        
-        .theme-green {
-            --primary: #10b981;
-            --secondary: #047857;
-            --accent: #34d399;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .gradient-text { background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); transition: 0.3s; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 theme-blue">
-    <!-- Header -->
+<body class="bg-gray-50 text-gray-800">
     <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold">RHS</span>
-                    </div>
-                    <h1 class="text-2xl font-bold gradient-text">The RHS</h1>
-                </div>
-                
-                <nav class="hidden md:flex space-x-6">
-                    <a href="#" class="font-medium hover:text-blue-600 transition">Home</a>
-                    <a href="#posts" class="font-medium hover:text-blue-600 transition">Posts</a>
-                    <a href="#gallery" class="font-medium hover:text-blue-600 transition">Gallery</a>
-                    <a href="#about" class="font-medium hover:text-blue-600 transition">About</a>
-                    <a href="#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 transition">
-                        <i class="fas fa-palette text-gray-600"></i>
-                    </button>
-                    <button id="adminBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                        <i class="fas fa-user-shield mr-2"></i>Admin
-                    </button>
-                    <button id="mobileMenuBtn" class="md:hidden text-gray-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">RHS</div>
+                <h1 class="text-2xl font-bold gradient-text">The RHS</h1>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="#" class="font-medium hover:text-blue-600 transition">Home</a>
-                <a href="#posts" class="font-medium hover:text-blue-600 transition">Posts</a>
-                <a href="#gallery" class="font-medium hover:text-blue-600 transition">Gallery</a>
-                <a href="#about" class="font-medium hover:text-blue-600 transition">About</a>
-                <a href="#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
-            </div>
+            <nav class="hidden md:flex space-x-6 font-medium">
+                <a href="#" class="hover:text-blue-600">Home</a>
+                <a href="#posts" class="hover:text-blue-600">Posts</a>
+                <a href="#contact" class="hover:text-blue-600">Contact</a>
+            </nav>
+            <button id="adminBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Admin Panel</button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16 md:py-24">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">Welcome to Raikali High School</h2>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in" style="animation-delay: 0.2s">
-                Sharing memories, stories, and achievements of our school community
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="animation-delay: 0.4s">
-                <button id="createPostBtn" class="bg-white text-blue-600 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
-                    <i class="fas fa-plus-circle mr-2"></i>Create Post
-                </button>
-                <button class="bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">
-                    <i class="fas fa-play-circle mr-2"></i>Watch Video
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Theme Selector -->
-    <div id="themeSelector" class="fixed right-4 top-20 bg-white p-4 rounded-lg shadow-lg hidden z-50">
-        <h3 class="font-bold mb-3">Select Theme</h3>
-        <div class="flex space-x-3">
-            <button class="theme-btn w-8 h-8 rounded-full bg-blue-600" data-theme="theme-blue"></button>
-            <button class="theme-btn w-8 h-8 rounded-full bg-purple-600" data-theme="theme-purple"></button>
-            <button class="theme-btn w-8 h-8 rounded-full bg-green-600" data-theme="theme-green"></button>
-        </div>
-    </div>
-
-    <!-- Features Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Our Features</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-xl card-hover">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-image text-blue-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Photo Gallery</h3>
-                    <p class="text-gray-600">Share and view beautiful moments from school events and activities.</p>
-                </div>
-                
-                <div class="bg-gray-50 p-6 rounded-xl card-hover">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-video text-purple-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Video Sharing</h3>
-                    <p class="text-gray-600">Upload and watch videos of performances, sports, and educational content.</p>
-                </div>
-                
-                <div class="bg-gray-50 p-6 rounded-xl card-hover">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-newspaper text-green-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">News & Articles</h3>
-                    <p class="text-gray-600">Read and write articles about school news, achievements, and stories.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Posts Section -->
     <section id="posts" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold">Latest Posts</h2>
-                <div class="flex space-x-2">
-                    <button class="filter-btn px-4 py-2 rounded-lg bg-blue-600 text-white">All</button>
-                    <button class="filter-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100">Photos</button>
-                    <button class="filter-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100">Videos</button>
-                    <button class="filter-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100">Articles</button>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">Latest School Posts</h2>
+            <div id="postsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                 </div>
-            </div>
-            
-            <div id="postsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Posts will be dynamically added here -->
-            </div>
-            
-            <div class="text-center mt-12">
-                <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-                    Load More Posts
-                </button>
-            </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Photo Gallery</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="School event" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Classroom" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Library" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1580582972705-39b1c870d77b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sports" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Science lab" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Art class" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Graduation" class="w-full h-full object-cover hover:scale-110 transition duration-300">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ad Section -->
     <section class="py-8 bg-gray-100">
         <div class="container mx-auto px-4">
-            <div class="bg-white rounded-xl p-6 shadow-md flex flex-col md:flex-row items-center justify-between">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold">Support Our School</h3>
-                    <p class="text-gray-600">Advertise with us and help fund school programs</p>
-                </div>
-                <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-                    Advertise Here
-                </button>
+            <div id="adSpace" class="bg-white rounded-xl p-8 shadow-md border-2 border-dashed border-blue-400 text-center">
+                <h3 class="text-xl font-bold text-blue-600">Advertisement Space</h3>
+                <p class="text-gray-600 mt-2">To place your advertisement here, please contact the admin.</p>
+                <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-full">Add Ad</button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold">RHS</span>
-                        </div>
-                        <h3 class="text-xl font-bold">The RHS</h3>
-                    </div>
-                    <p class="text-gray-400">Raikali High School - Sharing our community stories and achievements.</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Home</a></li>
-                        <li><a href="#posts" class="hover:text-white transition">Posts</a></li>
-                        <li><a href="#gallery" class="hover:text-white transition">Gallery</a></li>
-                        <li><a href="#about" class="hover:text-white transition">About</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> Raikali, Karnataka</li>
-                        <li><i class="fas fa-phone mr-2"></i> +91 1234567890</li>
-                        <li><i class="fas fa-envelope mr-2"></i> info@raikalihighschool.edu</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">The RHS</h3>
+                <p class="text-gray-400">Official platform for Raikali High School to share news and achievements.</p>
             </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-                <p>&copy; 2023 The RHS - Raikali High School. All rights reserved.</p>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Contact Details</h4>
+                <ul class="space-y-4 text-gray-300">
+                    <li><i class="fas fa-map-marker-alt mr-3 text-blue-500"></i> Raikali, Akkelpur, Joypurhat</li>
+                    <li><i class="fas fa-phone mr-3 text-blue-500"></i> <span id="adminPhone" contenteditable="true" class="bg-gray-800 p-1 rounded border border-gray-700 cursor-text">Click to add phone number</span></li>
+                    <li><i class="fas fa-envelope mr-3 text-blue-500"></i> info@raikalihighschool.edu</li>
+                </ul>
             </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+            <p>&copy; 2023 Raikali High School. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Create Post Modal -->
-    <div id="createPostModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl w-full max-w-2xl max-h-screen overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold">Create New Post</h3>
-                    <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                
-                <form id="postForm">
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-medium mb-2">Post Type</label>
-                        <div class="grid grid-cols-3 gap-2">
-                            <button type="button" class="post-type-btn py-2 px-4 rounded-lg bg-blue-600 text-white" data-type="text">
-                                <i class="fas fa-file-alt mr-2"></i>Text
-                            </button>
-                            <button type="button" class="post-type-btn py-2 px-4 rounded-lg bg-gray-200 text-gray-700" data-type="image">
-                                <i class="fas fa-image mr-2"></i>Image
-                            </button>
-                            <button type="button" class="post-type-btn py-2 px-4 rounded-lg bg-gray-200 text-gray-700" data-type="video">
-                                <i class="fas fa-video mr-2"></i>Video
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="postTitle" class="block text-gray-700 font-medium mb-2">Title</label>
-                        <input type="text" id="postTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="postContent" class="block text-gray-700 font-medium mb-2">Content</label>
-                        <textarea id="postContent" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-                    </div>
-                    
-                    <div id="imageUploadDiv" class="mb-4 hidden">
-                        <label for="postImage" class="block text-gray-700 font-medium mb-2">Upload Image</label>
-                        <input type="file" id="postImage" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    
-                    <div id="videoUploadDiv" class="mb-4 hidden">
-                        <label for="postVideo" class="block text-gray-700 font-medium mb-2">Upload Video</label>
-                        <input type="file" id="postVideo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    
-                    <div class="flex justify-end space-x-3">
-                        <button type="button" id="cancelPostBtn" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
-                            Cancel
-                        </button>
-                        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                            Publish Post
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl w-full max-w-2xl max-h-screen overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold">Admin Panel</h3>
-                    <button id="closeAdminBtn" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                
-                <div class="mb-6">
-                    <h4 class="text-lg font-bold mb-4">Manage Posts</h4>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
-                                <tr>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminPostsTable" class="bg-white divide-y divide-gray-200">
-                                <!-- Admin posts will be dynamically added here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="mb-6">
-                    <h4 class="text-lg font-bold mb-4">Ad Management</h4>
-                    <div class="bg-gray-100 p-4 rounded-lg">
-                        <p class="mb-2">Current Ad Revenue: <span class="font-bold">$245.00</span></p>
-                        <p class="mb-4">Active Advertisements: <span class="font-bold">3</span></p>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                            Add New Advertisement
-                        </button>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Site Statistics</h4>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-blue-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Total Posts</p>
-                            <p class="text-2xl font-bold">24</p>
-                        </div>
-                        <div class="bg-green-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Total Views</p>
-                            <p class="text-2xl font-bold">1,240</p>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Comments</p>
-                            <p class="text-2xl font-bold">86</p>
-                        </div>
-                        <div class="bg-yellow-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Active Users</p>
-                            <p class="text-2xl font-bold">142</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Sample posts data
+        // Sample Posts Data
         const posts = [
-            {
-                id: 1,
-                title: "Annual Sports Day Celebration",
-                content: "Our annual sports day was a great success with students participating in various athletic events.",
-                type: "text",
-                author: "Principal Sharma",
-                date: "2023-10-15",
-                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 2,
-                title: "Science Exhibition Highlights",
-                content: "Students showcased innovative science projects at our annual exhibition.",
-                type: "image",
-                author: "Science Department",
-                date: "2023-10-10",
-                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 3,
-                title: "Cultural Fest 2023",
-                content: "Watch the highlights from our vibrant cultural festival featuring dance, music, and drama performances.",
-                type: "video",
-                author: "Cultural Committee",
-                date: "2023-09-28",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-            },
-            {
-                id: 4,
-                title: "New Library Opening",
-                content: "We are excited to announce the opening of our new state-of-the-art library facility.",
-                type: "text",
-                author: "Admin Office",
-                date: "2023-09-20",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 5,
-                title: "Students Win Robotics Competition",
-                content: "Our robotics team brought home the first prize in the inter-school robotics competition.",
-                type: "image",
-                author: "Robotics Club",
-                date: "2023-09-15",
-                image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 6,
-                title: "Teacher's Day Special",
-                content: "Students organized a special assembly to honor their teachers on Teacher's Day.",
-                type: "text",
-                author: "Student Council",
-                date: "2023-09-05",
-                image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            }
+            { title: "Annual Sports Day", content: "Successful sports day held at our school ground.", date: "Oct 15, 2023", author: "Headmaster" },
+            { title: "Science Exhibition", content: "Students showcased amazing innovative projects.", date: "Oct 10, 2023", author: "Science Dept" }
         ];
 
-        // DOM Elements
-        const postsContainer = document.getElementById('postsContainer');
-        const createPostBtn = document.getElementById('createPostBtn');
-        const createPostModal = document.getElementById('createPostModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const cancelPostBtn = document.getElementById('cancelPostBtn');
-        const postForm = document.getElementById('postForm');
-        const adminBtn = document.getElementById('adminBtn');
-        const adminPanel = document.getElementById('adminPanel');
-        const closeAdminBtn = document.getElementById('closeAdminBtn');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const themeToggle = document.getElementById('themeToggle');
-        const themeSelector = document.getElementById('themeSelector');
-        const postTypeBtns = document.querySelectorAll('.post-type-btn');
-        const imageUploadDiv = document.getElementById('imageUploadDiv');
-        const videoUploadDiv = document.getElementById('videoUploadDiv');
-        const adminPostsTable = document.getElementById('adminPostsTable');
-
-        // Render posts
+        // Function to show posts on the website
         function renderPosts() {
-            postsContainer.innerHTML = '';
-            posts.forEach(post => {
-                const postCard = document.createElement('div');
-                postCard.className = 'bg-white rounded-xl overflow-hidden shadow-lg card-hover';
-                
-                let postContent = '';
-                if (post.type === 'image' && post.image) {
-                    postContent = `<img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">`;
-                } else if (post.type === 'video' && post.videoUrl) {
-                    postContent = `<div class="relative pb-[56.25%] h-0">
-                        <iframe src="${post.videoUrl}" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen></iframe>
-                    </div>`;
-                }
-                
-                postCard.innerHTML = `
-                    ${postContent}
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">${post.type}</span>
-                            <span class="text-gray-500 text-sm">${post.date}</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">${post.title}</h3>
-                        <p class="text-gray-600 mb-4">${post.content}</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">By ${post.author}</span>
-                            <button class="text-blue-600 hover:text-blue-800 transition">
-                                <i class="fas fa-heart mr-1"></i>24
-                            </button>
+            const container = document.getElementById('postsContainer');
+            if (container) {
+                container.innerHTML = posts.map(post => `
+                    <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                        <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">${post.date}</span>
+                        <h3 class="text-xl font-bold my-3 text-gray-800">${post.title}</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">${post.content}</p>
+                        <div class="flex items-center text-sm text-gray-500 font-medium">
+                            <i class="fas fa-user-circle mr-2"></i> ${post.author}
                         </div>
                     </div>
-                `;
-                
-                postsContainer.appendChild(postCard);
-            });
-        }
-
-        // Render admin posts table
-        function renderAdminPosts() {
-            adminPostsTable.innerHTML = '';
-            posts.forEach(post => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="px-4 py-3 whitespace-nowrap">${post.title}</td>
-                    <td class="px-4 py-3 whitespace-nowrap">${post.type}</td>
-                    <td class="px-4 py-3 whitespace-nowrap">${post.date}</td>
-                    <td class="px-4 py-3 whitespace-nowrap">
-                        <button class="text-blue-600 hover:text-blue-800 mr-3">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="text-red-600 hover:text-red-800">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                adminPostsTable.appendChild(row);
-            });
-        }
-
-        // Event Listeners
-        createPostBtn.addEventListener('click', () => {
-            createPostModal.classList.remove('hidden');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            createPostModal.classList.add('hidden');
-        });
-
-        cancelPostBtn.addEventListener('click', () => {
-            createPostModal.classList.add('hidden');
-        });
-
-        adminBtn.addEventListener('click', () => {
-            // Simple password prompt for demo purposes
-            const password = prompt('Enter admin password:');
-            if (password === 'admin123') {
-                adminPanel.classList.remove('hidden');
-                renderAdminPosts();
-            } else {
-                alert('Incorrect password!');
+                `).join('');
             }
-        });
+        }
 
-        closeAdminBtn.addEventListener('click', () => {
-            adminPanel.classList.add('hidden');
-        });
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        themeToggle.addEventListener('click', () => {
-            themeSelector.classList.toggle('hidden');
-        });
-
-        // Theme change
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const theme = btn.getAttribute('data-theme');
-                document.body.className = document.body.className.replace(/theme-\w+/, theme);
-                themeSelector.classList.add('hidden');
-            });
-        });
-
-        // Post type selection
-        postTypeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                postTypeBtns.forEach(b => {
-                    b.classList.remove('bg-blue-600', 'text-white');
-                    b.classList.add('bg-gray-200', 'text-gray-700');
-                });
-                
-                btn.classList.remove('bg-gray-200', 'text-gray-700');
-                btn.classList.add('bg-blue-600', 'text-white');
-                
-                const type = btn.getAttribute('data-type');
-                imageUploadDiv.classList.add('hidden');
-                videoUploadDiv.classList.add('hidden');
-                
-                if (type === 'image') {
-                    imageUploadDiv.classList.remove('hidden');
-                } else if (type === 'video') {
-                    videoUploadDiv.classList.remove('hidden');
-                }
-            });
-        });
-
-        // Post form submission
-        postForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const title = document.getElementById('postTitle').value;
-            const content = document.getElementById('postContent').value;
-            
-            // Get selected post type
-            let selectedType = 'text';
-            postTypeBtns.forEach(btn => {
-                if (btn.classList.contains('bg-blue-600')) {
-                    selectedType = btn.getAttribute('data-type');
-                }
-            });
-            
-            // Create new post object
-            const newPost = {
-                id: posts.length + 1,
-                title,
-                content,
-                type: selectedType,
-                author: 'Current User',
-                date: new Date().toISOString().split('T')[0],
-                image: selectedType === 'image' ? 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' : null,
-                videoUrl: selectedType === 'video' ? 'https://www.youtube.com/embed/dQw4w9WgXcQ' : null
-            };
-            
-            // Add to posts array
-            posts.unshift(newPost);
-            
-            // Re-render posts
-            renderPosts();
-            
-            // Reset form and close modal
-            postForm.reset();
-            createPostModal.classList.add('hidden');
-            
-            // Show success message
-            const successMsg = document.createElement('div');
-            successMsg.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-            successMsg.textContent = 'Post created successfully!';
-            document.body.appendChild(successMsg);
-            
-            setTimeout(() => {
-                successMsg.remove();
-            }, 3000);
-        });
-
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active button style
-                document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('bg-blue-600', 'text-white');
-                    b.classList.add('bg-white', 'text-gray-700');
-                });
-                
-                btn.classList.remove('bg-white', 'text-gray-700');
-                btn.classList.add('bg-blue-600', 'text-white');
-                
-                // Filter posts (in a real app, this would filter the displayed posts)
-                const filterType = btn.textContent.toLowerCase();
-                console.log(`Filtering by: ${filterType}`);
-            });
-        });
-
-        // Initialize
-        renderPosts();
+        window.onload = renderPosts;
     </script>
 </body>
 </html>
